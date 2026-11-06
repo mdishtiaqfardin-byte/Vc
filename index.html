@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b0b0d">
+<title>TRCP Agency — Membership & Live Entertainment</title>
+<style>
+:root{--bg:#09090b;--panel:#141418;--panel2:#1b1b21;--gold:#d8b56d;--gold2:#f2d99c;--muted:#a6a2a0;--line:#302d29;--white:#f6f3ed;--red:#d96c6c;--green:#78c69a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% -10%,#292116 0,transparent 38%),var(--bg);color:var(--white);font:15px/1.5 Inter,system-ui,Arial,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;margin:auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:#0b0b0deF;border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-weight:850;letter-spacing:.16em;color:var(--gold2);font-size:19px}.brand small{display:block;font-size:9px;letter-spacing:.28em;color:var(--muted);font-weight:600}
+.navright{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--white);padding:10px 14px;border-radius:11px}.btn.gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#21190c;border:0;font-weight:800}.btn.ghost{background:transparent}.btn.danger{border-color:#693b3b;color:#ffb2b2}
+.hero{padding:54px 0 30px;display:grid;grid-template-columns:1.4fr .8fr;gap:26px;align-items:center}.eyebrow{color:var(--gold);letter-spacing:.2em;text-transform:uppercase;font-size:11px;font-weight:800}.hero h1{font-size:clamp(34px,6vw,62px);line-height:1.03;margin:12px 0 16px;letter-spacing:-.04em}.hero h1 span{color:var(--gold2)}.sub{color:var(--muted);max-width:620px}.hero-card,.card{background:linear-gradient(145deg,#19191e,#111114);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 18px 50px #0005}.hero-card strong{font-size:36px;color:var(--gold2);display:block}.hero-card p{color:var(--muted);margin:4px 0 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:22px}.tab{border:0;background:transparent;color:var(--muted);padding:10px 13px;border-radius:10px}.tab.active{background:#332a1b;color:var(--gold2)}
+main{padding-bottom:70px}.section{display:none}.section.active{display:block}.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:18px 0}.sectionhead h2{margin:0;font-size:25px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.profile{padding:0;overflow:hidden}.profiletop{height:130px;background:linear-gradient(135deg,#342a1b,#161619);display:flex;align-items:center;justify-content:center;color:var(--gold2);font-size:35px}.profilebody{padding:16px}.code{font-weight:900;color:var(--gold2);letter-spacing:.12em}.pill{font-size:11px;border:1px solid var(--line);padding:4px 8px;border-radius:30px;color:var(--muted)}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.status{font-size:11px;color:var(--green)}.status.off{color:var(--red)}.profile-actions{display:flex;gap:8px;margin-top:12px}.profile-actions .btn{flex:1;padding:8px}
+.empty{border:1px dashed #514735;border-radius:18px;padding:34px;text-align:center;color:var(--muted);grid-column:1/-1}
+.packages{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.price{font-size:28px;color:var(--gold2);font-weight:850;margin:10px 0}.package h3{margin:0}.package p{color:var(--muted);min-height:42px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}label{font-size:12px;color:var(--muted)}input,select{width:100%;background:#0c0c0f;color:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px;outline:none}input:focus,select:focus{border-color:var(--gold)}
+.notice{border:1px solid #66512c;background:#241d12;color:#e9d7b3;padding:12px 14px;border-radius:12px;margin:12px 0}.adminstats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:var(--panel);border:1px solid var(--line);padding:16px;border-radius:14px}.stat b{font-size:25px;color:var(--gold2);display:block}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:12px 9px;border-bottom:1px solid var(--line)}th{color:var(--gold2);font-weight:700}.tablewrap{overflow:auto}
+footer{border-top:1px solid var(--line);padding:25px 0;color:var(--muted);font-size:12px}.help{position:fixed;right:18px;bottom:18px;z-index:8;border-radius:50px;padding:13px 18px;background:#1c6b49;color:white;text-decoration:none;font-weight:800;box-shadow:0 10px 30px #0008}
+.modalback{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:18px;z-index:30}.modalback.show{display:grid}.modal{width:min(600px,100%);max-height:90vh;overflow:auto;background:#151519;border:1px solid var(--line);border-radius:18px;padding:22px}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.modalhead h3{margin:0}.x{background:transparent;border:0;color:var(--white);font-size:24px}
+.preview{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.preview img,.preview video{width:82px;height:82px;object-fit:cover;border-radius:9px;border:1px solid var(--line)}
+.hidden{display:none!important}
+@media(max-width:800px){.hero{grid-template-columns:1fr;padding-top:36px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.packages{grid-template-columns:1fr}.adminstats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.wrap{padding:0 14px}.nav{height:auto;min-height:66px;padding:10px 0}.brand{font-size:16px}.navright .btn{padding:8px 10px;font-size:12px}.grid{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.field.full{grid-column:auto}.hero h1{font-size:39px}.tabs{overflow:auto;flex-wrap:nowrap}.tab{white-space:nowrap}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+ <div class="brand">TRCP AGENCY<small>MEMBERSHIP · LIVE ENTERTAINMENT</small></div>
+ <div class="navright"><button class="btn ghost" id="langBtn">বাংলা</button><button class="btn" id="loginBtn">Sign in</button><button class="btn gold" id="registerBtn">Create account</button></div>
+</div></header>
+<div class="wrap">
+<section class="hero">
+ <div><div class="eyebrow">Premium digital experiences</div><h1>Discover your next<br><span>live experience.</span></h1><p class="sub">Browse creator profiles, explore membership options and manage your account in one elegant place.</p><button class="btn gold" onclick="showTab('profiles')">Explore profiles</button></div>
+ <div class="hero-card"><div class="eyebrow">TRCP MEMBERSHIP</div><strong>500</strong><b>Creator profile slots</b><p>Code-based profiles · Member access · Responsive on every screen</p></div>
+</section>
+<nav class="tabs">
+ <button class="tab active" data-tab="profiles">Profiles</button><button class="tab" data-tab="membership">Membership</button><button class="tab" data-tab="account">My account</button><button class="tab" data-tab="admin">Admin portal</button>
+</nav>
+<main>
+<section class="section active" id="profiles">
+ <div class="sectionhead"><div><div class="eyebrow">Explore</div><h2>Creator profiles</h2><div class="muted">Profiles are identified by code only.</div></div><select id="categoryFilter" style="max-width:170px"><option value="all">All categories</option><option>Medium</option><option>Premium</option><option>Special</option></select></div>
+ <div class="grid" id="profileGrid"><div class="empty">No profiles published yet. Sign in to view member content.</div></div>
+</section>
+<section class="section" id="membership">
+ <div class="sectionhead"><div><div class="eyebrow">Choose access</div><h2>Membership plans</h2></div></div>
+ <div class="packages">
+  <article class="card package"><span class="pill">MONTHLY</span><h3>1 Month</h3><div class="price">৳850</div><p>Access to member-only live entertainment updates.</p><button class="btn gold" onclick="choosePlan('1 Month',850)">Continue</button></article>
+  <article class="card package"><span class="pill">POPULAR</span><h3>3 Months</h3><div class="price">৳1,530</div><p>Three months of membership access.</p><button class="btn gold" onclick="choosePlan('3 Months',1530)">Continue</button></article>
+  <article class="card package"><span class="pill">VALUE</span><h3>6 Months</h3><div class="price">৳3,550</div><p>Six months of membership access.</p><button class="btn gold" onclick="choosePlan('6 Months',3550)">Continue</button></article>
+ </div>
+ <div class="notice">Demo interface: payments are not processed. Connect a verified payment provider and server-side order verification before accepting real payments.</div>
+</section>
+<section class="section" id="account">
+ <div class="sectionhead"><div><div class="eyebrow">Member area</div><h2>My account</h2></div></div>
+ <div class="card"><div id="accountState" class="muted">Sign in or create an account to view your membership and payment submissions.</div><div id="paymentArea" class="hidden">
+  <h3 id="selectedPlan">Payment submission</h3><div class="notice">Select a payment method on the official provider checkout. Do not share your PIN or password. Upload a receipt only after completing a legitimate payment.</div>
+  <div class="formgrid"><div class="field"><label>Payment reference / last 4 digits (not PIN)</label><input id="payRef" maxlength="40" placeholder="Enter reference"></div><div class="field"><label>Receipt screenshot (optional)</label><input id="receipt" type="file" accept="image/*"></div><div class="field full"><button class="btn gold" id="submitPayment">Submit for review</button></div></div>
+ </div></div>
+ <div class="card" style="margin-top:14px"><h3>Payment history</h3><div id="history" class="muted">No submissions yet.</div></div>
+</section>
+<section class="section" id="admin">
+ <div class="sectionhead"><div><div class="eyebrow">Management</div><h2>Admin portal</h2><div class="muted">Local preview controls only — not a secure production admin login.</div></div><span class="pill">ADMIN DEMO</span></div>
+ <div class="notice">For production, protect this area with server-side authentication, role permissions, secure storage and audit logs. Never place admin credentials in HTML or JavaScript.</div>
+ <div class="adminstats"><div class="stat"><b id="countProfiles">0</b><span class="muted">Profiles</span></div><div class="stat"><b id="countMembers">0</b><span class="muted">Members</span></div><div class="stat"><b id="countPayments">0</b><span class="muted">Submissions</span></div><div class="stat"><b>500</b><span class="muted">Profile slots</span></div></div>
+ <div class="card" style="margin-top:15px"><h3>Add / edit profile</h3><div class="formgrid">
+  <div class="field"><label>Profile code</label><input id="profileCode" placeholder="e.g. 001" maxlength="8"></div>
+  <div class="field"><label>Category</label><select id="profileCategory"><option>Medium</option><option>Premium</option><option>Special</option></select></div>
+  <div class="field"><label>Availability</label><select id="profileAvailable"><option value="true">Available</option><option value="false">Unavailable</option></select></div>
+  <div class="field"><label>Upload photos/videos from gallery (up to 4)</label><input id="profileFiles" type="file" accept="image/*,video/*" multiple></div>
+  <div class="field full"><div id="filePreview" class="preview"></div><button class="btn gold" id="saveProfile">Save profile</button></div>
+ </div></div>
+ <div class="card" style="margin-top:15px"><h3>Profile inventory</h3><div class="tablewrap"><table><thead><tr><th>Code</th><th>Category</th><th>Status</th><th>Media</th><th>Actions</th></tr></thead><tbody id="adminProfiles"><tr><td colspan="5" class="muted">No profiles yet.</td></tr></tbody></table></div></div>
+ <div class="card" style="margin-top:15px"><h3>Payment review</h3><div class="tablewrap"><table><thead><tr><th>Member</th><th>Plan</th><th>Reference</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminPayments"><tr><td colspan="5" class="muted">No submissions yet.</td></tr></tbody></table></div></div>
+ <div class="card" style="margin-top:15px"><h3>Member management</h3><div class="tablewrap"><table><thead><tr><th>Member</th><th>Country</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminMembers"><tr><td colspan="4" class="muted">No members yet.</td></tr></tbody></table></div></div>
+</section>
+</main>
+<footer><div class="wrap">© 2026 TRCP Agency · Membership & Live Entertainment Demo · Use responsibly and follow applicable laws.</div></footer>
+</div>
+<a class="help" href="https://wa.me/8801823020470" target="_blank" rel="noopener">WhatsApp Help</a>
+<div class="modalback" id="modal"><div class="modal"><div class="modalhead"><h3 id="modalTitle">Create account</h3><button class="x" id="closeModal">×</button></div><div id="modalBody"></div></div></div>
+<script>
+const $=id=>document.getElementById(id);
+let members=JSON.parse(localStorage.getItem('trcp_members')||'[]');
+let profiles=JSON.parse(localStorage.getItem('trcp_profiles')||'[]');
+let payments=JSON.parse(localStorage.getItem('trcp_payments')||'[]');
+let current=localStorage.getItem('trcp_current')||'';
+let selected={name:'',price:0};
+function persist(){localStorage.setItem('trcp_members',JSON.stringify(members));localStorage.setItem('trcp_profiles',JSON.stringify(profiles));localStorage.setItem('trcp_payments',JSON.stringify(payments));localStorage.setItem('trcp_current',current)}
+function showTab(id){document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));if(id==='admin')renderAdmin()}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+function modal(title,html){$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modal').classList.add('show')}
+function closeModal(){$('modal').classList.remove('show')}
+$('closeModal').onclick=closeModal;$('modal').onclick=e=>{if(e.target===$('modal'))closeModal()};
+function openRegister(){modal('Create member account',`<form id="registerForm" class="formgrid">
+<div class="field"><label>Country</label><select id="country"><option value="+880">Bangladesh (+880)</option><option value="+91">India (+91)</option><option value="+1">United States (+1)</option><option value="+44">United Kingdom (+44)</option><option value="+971">United Arab Emirates (+971)</option><option value="+ sa">Other country</option></select></div>
+<div class="field"><label>Phone number</label><input id="phone" required inputmode="tel" placeholder="Phone number"></div>
+<div class="field"><label>Password (4 digits for this demo)</label><input id="password" required inputmode="numeric" pattern="[0-9]{4}" maxlength="4" type="password"></div>
+<div class="field"><label>Confirm password</label><input id="confirm" required inputmode="numeric" pattern="[0-9]{4}" maxlength="4" type="password"></div>
+<div class="field full"><button class="btn gold">Create account</button></div></form><p class="muted">Demo only. A production service must use secure password hashing and phone verification.</p>`);
+$('registerForm').onsubmit=e=>{e.preventDefault();let phone=$('phone').value.trim(),pass=$('password').value;if(pass!==$('confirm').value)return alert('Passwords do not match.');if(!/^\d{4}$/.test(pass))return alert('Use exactly 4 digits in this demo.');if(members.some(m=>m.phone===phone))return alert('This phone number is already registered.');members.push({phone,country:$('country').value,status:'Active'});current=phone;persist();closeModal();renderAccount();alert('Demo account created.');};
+}
+function openLogin(){modal('Member sign in',`<form id="loginForm" class="formgrid"><div class="field full"><label>Phone number</label><input id="loginPhone" required></div><div class="field full"><label>4-digit password</label><input id="loginPass" type="password" inputmode="numeric" maxlength="4" required></div><div class="field full"><button class="btn gold">Sign in</button></div></form><p class="muted">This preview stores demo account data in this browser only. Do not use a real password.</p>`);$('loginForm').onsubmit=e=>{e.preventDefault();let m=members.find(x=>x.phone===$('loginPhone').value.trim()&&x.status!=='Banned');if(!m)return alert('Account not found or restricted in this demo.');current=m.phone;persist();closeModal();renderAccount();};}
+$('registerBtn').onclick=openRegister;$('loginBtn').onclick=()=>current?(current='',persist(),renderAccount(),alert('Signed out.')):openLogin();
+function choosePlan(name,price){if(!current){openRegister();return}selected={name,price};showTab('account');$('paymentArea').classList.remove('hidden');$('selectedPlan').textContent=`${name} membership · ৳${price.toLocaleString('en-BD')}`;}
+$('submitPayment').onclick=()=>{if(!current)return;let ref=$('payRef').value.trim();if(!ref)return alert('Enter a payment reference.');let receipt=$('receipt').files[0];if(receipt&&receipt.size>5*1024*1024)return alert('Receipt image must be under 5 MB.');payments.push({phone:current,plan:selected.name||'Membership enquiry',amount:selected.price||0,ref,status:'Pending'});persist();$('payRef').value='';$('receipt').value='';renderAccount();renderAdmin();alert('Submission saved in this browser demo. No payment was processed.');};
+function renderAccount(){let m=members.find(x=>x.phone===current);$('accountState').textContent=m?`Signed in: ${m.phone} · ${m.status}`:'Sign in or create an account to view your membership and payment submissions.';$('paymentArea').classList.toggle('hidden',!m);let mine=payments.filter(p=>p.phone===current);$('history').innerHTML=mine.length?mine.map(p=>`<p>৳${p.amount} · ${esc(p.plan)} · ${esc(p.status)}</p>`).join(''):'No submissions yet.';}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function renderProfiles(){let filter=$('categoryFilter').value;let list=profiles.filter(p=>p.available&&(filter==='all'||p.category===filter));$('profileGrid').innerHTML=list.length?list.map(p=>`<article class="card profile"><div class="profiletop">✦</div><div class="profilebody"><div class="row"><span class="code">CODE ${esc(p.code)}</span><span class="pill">${esc(p.category)}</span></div><p class="muted">${p.media.length} media item(s)</p><span class="status">● Available</span></div></article>`).join(''):'<div class="empty">No available profiles in this category yet.</div>';}
+$('categoryFilter').onchange=renderProfiles;
+let pendingFiles=[];
+$('profileFiles').onchange=e=>{pendingFiles=[...e.target.files].slice(0,4);$('filePreview').innerHTML='';pendingFiles.forEach(f=>{let url=URL.createObjectURL(f),el=document.createElement(f.type.startsWith('video/')?'video':'img');el.src=url;if(el.tagName==='VIDEO')el.muted=true;$('filePreview').append(el);});};
+$('saveProfile').onclick=()=>{let code=$('profileCode').value.trim();if(!code)return alert('Enter a profile code.');if(profiles.length>=500&&!profiles.some(p=>p.code===code))return alert('Maximum 500 profile slots reached.');let old=profiles.find(p=>p.code===code);let media=pendingFiles.map(f=>({name:f.name,type:f.type,size:f.size}));if(old){old.category=$('profileCategory').value;old.available=$('profileAvailable').value==='true';if(media.length)old.media=media;}else profiles.push({code,category:$('profileCategory').value,available:$('profileAvailable').value==='true',media});persist();pendingFiles=[];$('profileFiles').value='';$('filePreview').innerHTML='';$('profileCode').value='';renderAdmin();renderProfiles();alert('Profile saved in this browser demo. Media file bytes are not uploaded to a server.');};
+function renderAdmin(){$('countProfiles').textContent=profiles.length;$('countMembers').textContent=members.length;$('countPayments').textContent=payments.length;$('adminProfiles').innerHTML=profiles.length?profiles.map(p=>`<tr><td>${esc(p.code)}</td><td>${esc(p.category)}</td><td>${p.available?'Available':'Unavailable'}</td><td>${p.media.length}</td><td><button class="btn" onclick="toggleProfile('${esc(p.code)}')">Toggle</button> <button class="btn danger" onclick="deleteProfile('${esc(p.code)}')">Delete</button></td></tr>`).join(''):'<tr><td colspan="5" class="muted">No profiles yet.</td></tr>';$('adminPayments').innerHTML=payments.length?payments.map((p,i)=>`<tr><td>${esc(p.phone)}</td><td>${esc(p.plan)}</td><td>${esc(p.ref)}</td><td>${esc(p.status)}</td><td><button class="btn" onclick="reviewPayment(${i})">Approve</button></td></tr>`).join(''):'<tr><td colspan="5" class="muted">No submissions yet.</td></tr>';$('adminMembers').innerHTML=members.length?members.map((m,i)=>`<tr><td>${esc(m.phone)}</td><td>${esc(m.country)}</td><td>${esc(m.status)}</td><td><button class="btn danger" onclick="toggleBan(${i})">${m.status==='Banned'?'Unban':'Ban'}</button></td></tr>`).join(''):'<tr><td colspan="4" class="muted">No members yet.</td></tr>';}
+window.toggleProfile=code=>{let p=profiles.find(x=>x.code===code);if(p){p.available=!p.available;persist();renderAdmin();renderProfiles();}};
+window.deleteProfile=code=>{if(confirm('Delete this profile?')){profiles=profiles.filter(x=>x.code!==code);persist();renderAdmin();renderProfiles();}};
+window.reviewPayment=i=>{payments[i].status='Approved';persist();renderAdmin();renderAccount();};
+window.toggleBan=i=>{members[i].status=members[i].status==='Banned'?'Active':'Banned';if(current===members[i].phone&&members[i].status==='Banned')current='';persist();renderAdmin();renderAccount();};
+$('langBtn').onclick=()=>{alert('Language switch preview: English is active. A production version should translate all labels and messages.');};
+renderProfiles();renderAccount();renderAdmin();
+</script>
+</body></html>
